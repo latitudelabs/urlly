@@ -21,7 +21,7 @@ function canBeJSON(obj: any): boolean {
 }
 
 export function defaultGoto(url: string) {
-  location.href = url;
+  location.href += url;
 }
 
 export default function persistUrlParams<T extends string>(
@@ -38,9 +38,15 @@ export default function persistUrlParams<T extends string>(
     }
   };
 
+  const defaultSearchParam: URLSearchParams = new URLSearchParams(
+    location.search
+  );
+
   return {
-    updateURLParams: (newParams: Record<string, any>) => {
-      const searchParams = new URLSearchParams(location.search);
+    updateURLParams: (
+      newParams: Record<string, any>,
+      searchParams: URLSearchParams = defaultSearchParam
+    ) => {
       for (const [key, value] of Object.entries(newParams)) {
         if (value) {
           const params = canBeJSON(value)
