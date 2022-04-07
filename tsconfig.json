@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"lib": ["esnext", "dom"],
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"outDir": "lib",
+		"baseUrl": ".",
+		"declaration": true,
+		"checkJs": true
+	},
+	"include": ["index.ts", "src", "**/*.d.ts"],
+	"exclude": ["node_modules", "lib"]
+}
