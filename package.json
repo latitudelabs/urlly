@@ -1,7 +1,7 @@
 {
   "name": "@lumiere/urlly",
   "version": "0.0.1",
-  "description": "A utility to safe get and update browser url params with ease",
+  "description": "Utility to safe get and update browser url params with ease 😋.",
   "main": "lib/index.js",
   "type": "module",
   "types": "lib/index.d.ts",
