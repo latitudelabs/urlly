@@ -38,14 +38,10 @@ export default function persistUrlParams<T extends string>(
     }
   };
 
-  const defaultSearchParam: URLSearchParams = new URLSearchParams(
-    location.search
-  );
-
   return {
     updateURLParams: (
       newParams: Record<string, any>,
-      searchParams: URLSearchParams = defaultSearchParam
+      searchParams: URLSearchParams = new URLSearchParams(location.search)
     ) => {
       for (const [key, value] of Object.entries(newParams)) {
         if (value) {
