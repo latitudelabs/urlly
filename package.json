@@ -1,7 +1,17 @@
 {
-  "name": "@lumiere/urlly",
-  "version": "0.0.1",
+  "name": "@latitudelabs/urlly",
+  "version": "0.0.2",
   "description": "Utility to safe get and update browser url params with ease 😋.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/latitudelabs/urlly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/latitudelabs/urlly/issues"
+  },
+  "homepage": "https://github.com/latitudelabs/urlly#readme",
+  "author": "@latitudelabs/dev-team",
+  "license": "ISC",
   "main": "lib/index.js",
   "type": "module",
   "types": "lib/index.d.ts",
@@ -12,8 +22,14 @@
     "prepare": "husky install",
     "pretty-quick": "pretty-quick --staged"
   },
-  "author": "",
-  "license": "ISC",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "keywords": [
+    "query params",
+    "get/save/update/parse query params"
+  ],
   "devDependencies": {
     "ava": "^4.1.0",
     "browser-env": "^3.3.0",
