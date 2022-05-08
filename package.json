@@ -30,6 +30,7 @@
     "query params",
     "get/save/update/parse query params"
   ],
+  "sideEffects": false,
   "devDependencies": {
     "ava": "^4.1.0",
     "browser-env": "^3.3.0",
