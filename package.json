@@ -1,6 +1,6 @@
 {
   "name": "@latitudelabs/urlly",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Utility to safe get and update browser url params with ease 😋.",
   "repository": {
     "type": "git",
@@ -25,6 +25,12 @@
   "directories": {
     "lib": "lib",
     "test": "test"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.cjs"
+    }
   },
   "keywords": [
     "query params",
