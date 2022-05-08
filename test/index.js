@@ -2,15 +2,12 @@ import test from 'ava'
 import persistUrlParams from "../lib/index.js";
 
 const baseURL = 'https://lumiere.is';
-export function goto(url) {
-    location.href += url;
-}
 
 test.beforeEach(() => {
     location.href = baseURL;
 });
 
-const { getSearchParams, updateURLParams } = persistUrlParams(goto);
+const { getSearchParams, updateURLParams } = persistUrlParams();
 const url = new URL(baseURL);
 
 const dateToInput = (d) => new Date(d).toISOString()

@@ -20,8 +20,11 @@ function canBeJSON(obj: any): boolean {
   return res === "[object Object]" || res === "[object Array]";
 }
 
-export function defaultGoto(url: string) {
+export function defaultGoto(url: string, opt: ReplaceOptions = {}) {
   location.href += url;
+  if (opt.replaceState) {
+    history.replaceState({}, "", url);
+  }
 }
 
 export default function persistUrlParams<T extends string>(
