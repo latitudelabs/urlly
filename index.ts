@@ -7,15 +7,33 @@ export interface ReplaceOptions {
 
 export type ReplaceFunction = (url: string, options?: ReplaceOptions) => void;
 
+const isoDateRegex =
+  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+
+export function isDateString(v: string): boolean {
+  return isoDateRegex.test(v);
+}
+
+export function isDate(v: any): boolean {
+  return (
+    v instanceof Date || Object.prototype.toString.call(v) === "[object Date]"
+  );
+}
+
+function dateReviver(_: any, value: any) {
+  if (typeof value !== "string") return value;
+  return isDateString(value) ? new Date(value) : value;
+}
+
 export function safeParseJSON(str: string) {
   try {
-    return JSON.parse(str);
+    return JSON.parse(str, dateReviver);
   } catch (e) {
     return str;
   }
 }
 
-function canBeJSON(obj: any): boolean {
+export function canBeJSON(obj: any): boolean {
   const res = Object.prototype.toString.call(obj);
   return res === "[object Object]" || res === "[object Array]";
 }
@@ -50,7 +68,7 @@ export default function persistUrlParams<T extends string>(
         if (value) {
           const params = canBeJSON(value)
             ? JSON.stringify(value)
-            : encodeURIComponent(value);
+            : encodeURIComponent(isDate(value) ? value.toUTC() : value);
 
           searchParams.set(key, params);
         } else if (searchParams.has(key)) {
