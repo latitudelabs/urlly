@@ -1,5 +1,5 @@
 import test from 'ava'
-import persistUrlParams from "../lib/index.js";
+import persistUrlParams, {isDateString} from "../lib/index.js";
 
 const baseURL = 'https://lumiere.is';
 
@@ -29,8 +29,22 @@ test('can update and fetch date query param from url', (t) => {
     t.is(getSearchParams("date", url.searchParams), date )
 })
 
+test('can properly encode and decode a date object', (t) => {
+    const date = new Date()
+
+    t.notThrows(() => updateURLParams({ date: date }, url.searchParams))
+    t.is(getSearchParams("date", url.searchParams), dateToInput(date) )
+})
+
+test('returned date value is a date string', (t) => {
+    const date = new Date()
+
+    t.notThrows(() => updateURLParams({ date: date }, url.searchParams))
+    t.is(isDateString(getSearchParams("date", url.searchParams)), true )
+})
+
 test('can update and fetch a deep nested props query param from url', (t) => {
-    const date = dateToInput(new Date())
+    const date = new Date()
     const payload = { date: date, filter: "videos", sortBy: "date" }
 
     t.notThrows(() => updateURLParams({ props: payload }, url.searchParams))
