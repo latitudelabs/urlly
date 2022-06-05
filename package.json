@@ -17,7 +17,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "tsc": "tsc",
-    "test": "tsd && ava",
+    "test": "tsd && ava --serial",
     "build": "tsc && tsup",
     "prepare": "husky install",
     "pretty-quick": "pretty-quick --staged"
