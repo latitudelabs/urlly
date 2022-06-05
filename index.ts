@@ -68,7 +68,7 @@ export default function persistUrlParams<T extends string>(
         if (value) {
           const params = canBeJSON(value)
             ? JSON.stringify(value)
-            : encodeURIComponent(isDate(value) ? value.toUTC() : value);
+            : encodeURIComponent(isDate(value) ? value.toISOString() : value);
 
           searchParams.set(key, params);
         } else if (searchParams.has(key)) {
