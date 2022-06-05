@@ -45,7 +45,7 @@ export function defaultGoto(url: string, opt: ReplaceOptions = {}) {
   }
 }
 
-export default function persistUrlParams<T extends string>(
+export default function urlly<T extends string>(
   goto: ReplaceFunction = defaultGoto
 ) {
   let currentQuery = "";
@@ -60,7 +60,7 @@ export default function persistUrlParams<T extends string>(
   };
 
   return {
-    updateURLParams: (
+    updateQueryParams: (
       newParams: Record<string, any>,
       searchParams: URLSearchParams = new URLSearchParams(location.search)
     ) => {
