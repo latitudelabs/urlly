@@ -25,6 +25,7 @@ jobs:
           fetch-depth: 0
       - name: get-tag-branch
         run: bash .github/scripts/tag_ref.sh ${{ github.ref }}
+      - run: echo "${{ toJSON(env) }}"
   test:
     runs-on: ubuntu-latest
     strategy:
