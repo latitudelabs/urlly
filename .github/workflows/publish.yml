@@ -65,6 +65,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14.x"
+      - uses: actions/cache@v2
+        id: cache-deps
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm install
       - uses: actions/download-artifact@v3
         with:
           name: lib
