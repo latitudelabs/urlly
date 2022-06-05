@@ -1,5 +1,9 @@
 name: Publish
 on:
+  pull_request:
+    paths:
+      - "src/**"
+      - ".github/workflows/publish.yml"
   workflow_dispatch:
   push:
     branches:
