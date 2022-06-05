@@ -89,3 +89,6 @@ jobs:
           files: |
             ./lib/**
       - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          create_branch: true
+          branch: "changelog-${{ github.run_id }}"
