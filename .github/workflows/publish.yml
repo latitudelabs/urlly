@@ -88,3 +88,4 @@ jobs:
           generate_release_notes: true
           files: |
             ./lib/**
+      - uses: stefanzweifel/git-auto-commit-action@v4
