@@ -1,9 +1,9 @@
 import { expectType } from "tsd";
-import persistUrlParams, { defaultGoto } from "../index";
+import urlly, { defaultGoto } from "../index";
 
 export type QueryParamType = "filter" | "sort";
-const { getSearchParams, updateURLParams } =
-  persistUrlParams<QueryParamType>(defaultGoto);
+const { getSearchParams, updateQueryParams } =
+  urlly<QueryParamType>(defaultGoto);
 
 expectType<string | Record<string, any>>(getSearchParams("filter"));
-expectType<void>(updateURLParams({ filter: "filter" }));
+expectType<void>(updateQueryParams({ filter: "filter" }));
