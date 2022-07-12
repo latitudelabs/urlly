@@ -15,7 +15,7 @@ Utility to safely get and update browser url params with ease 😋.
 ```ts
 import urlly from "@latitudelabs/urlly";
 
-const { updateURLParams, getSearchParams } = urlly();
+const { updateQueryParams, getSearchParams } = urlly();
 ```
 
 2. Can properly encode to url params.
