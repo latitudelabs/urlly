@@ -13,7 +13,7 @@ Utility to safely get and update browser url params with ease 😋.
 1. Import and init
 
 ```ts
-import urrly from "@latitudelabs/urlly";
+import urlly from "@latitudelabs/urlly";
 
 const { updateURLParams, getSearchParams } = urlly();
 ```
