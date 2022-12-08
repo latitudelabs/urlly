@@ -1,6 +1,6 @@
 export interface ReplaceOptions {
   replaceState?: boolean;
-  keepfocus?: boolean;
+  keepFocus?: boolean;
   noscroll?: boolean;
   state?: any;
 }
@@ -53,7 +53,7 @@ export default function urlly<T extends string>(
     if (currentQuery != query) {
       goto(`?${query}`, {
         replaceState: true,
-        keepfocus: true,
+        keepFocus: true,
       });
       currentQuery = query;
     }
