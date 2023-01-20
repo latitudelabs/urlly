@@ -2,16 +2,19 @@ name: Publish
 on:
   pull_request:
     paths:
-      - "src/**"
+      - "index.ts"
       - ".github/workflows/publish.yml"
+      - "package.json"
+      - "README.md"
   workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - "src/**"
-      - "README.md"
+      - "index.ts"
       - ".github/workflows/publish.yml"
+      - "package.json"
+      - "README.md"
     tags:
       - "v*"
 jobs:
@@ -59,7 +62,7 @@ jobs:
     name: Publish to npmjs
     runs-on: ubuntu-latest
     needs: [prepare, test]
-    if: ${{ needs.prepare.outputs.TAG_BRANCH == 'main' && startsWith(github.ref, 'refs/tags/v') }} 
+    if: ${{ needs.prepare.outputs.TAG_BRANCH == 'main' && startsWith(github.ref, 'refs/tags/v') }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
