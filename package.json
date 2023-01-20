@@ -1,6 +1,6 @@
 {
   "name": "@latitudelabs/urlly",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Utility to safe get and update browser url params with ease 😋.",
   "repository": {
     "type": "git",
