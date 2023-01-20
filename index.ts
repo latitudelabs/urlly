@@ -7,6 +7,10 @@ export interface ReplaceOptions {
 
 export type ReplaceFunction = (url: string, options?: ReplaceOptions) => void;
 
+export type UpdateQueryParams<T extends string> = {
+  [K in T]?: any;
+};
+
 const isoDateRegex =
   /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 
@@ -14,7 +18,7 @@ export function isDateString(v: string): boolean {
   return isoDateRegex.test(v);
 }
 
-export function isDate(v: any): boolean {
+export function isDate(v: any): v is Date {
   return (
     v instanceof Date || Object.prototype.toString.call(v) === "[object Date]"
   );
@@ -33,7 +37,7 @@ export function safeParseJSON(str: string) {
   }
 }
 
-export function canBeJSON(obj: any): boolean {
+export function canBeJSON(obj: any) {
   const res = Object.prototype.toString.call(obj);
   return res === "[object Object]" || res === "[object Array]";
 }
@@ -61,14 +65,16 @@ export default function urlly<T extends string>(
 
   return {
     updateQueryParams: (
-      newParams: Record<string, any>,
+      newParams: UpdateQueryParams<T>,
       searchParams: URLSearchParams = new URLSearchParams(location.search)
     ) => {
       for (const [key, value] of Object.entries(newParams)) {
         if (value) {
           const params = canBeJSON(value)
             ? JSON.stringify(value)
-            : encodeURIComponent(isDate(value) ? value.toISOString() : value);
+            : encodeURIComponent(
+                isDate(value) ? value.toISOString() : String(value)
+              );
 
           searchParams.set(key, params);
         } else if (searchParams.has(key)) {
