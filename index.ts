@@ -4,9 +4,7 @@ export interface ReplaceOptions {
   noscroll?: boolean;
   state?: any;
 }
-
 export type ReplaceFunction = (url: string, options?: ReplaceOptions) => void;
-
 export type UpdateQueryParams<T extends string> = {
   [K in T]?: any;
 };
@@ -17,14 +15,13 @@ const isoDateRegex =
 export function isDateString(v: string): boolean {
   return isoDateRegex.test(v);
 }
-
 export function isDate(v: any): v is Date {
   return (
     v instanceof Date || Object.prototype.toString.call(v) === "[object Date]"
   );
 }
 
-function dateReviver(_: any, value: any) {
+export function dateReviver(_: any, value: any) {
   if (typeof value !== "string") return value;
   return isDateString(value) ? new Date(value) : value;
 }
@@ -54,13 +51,12 @@ export default function urlly<T extends string>(
 ) {
   let currentQuery = "";
   const updateURL = (query: string) => {
-    if (currentQuery != query) {
-      goto(`?${query}`, {
-        replaceState: true,
-        keepFocus: true,
-      });
-      currentQuery = query;
-    }
+    if (currentQuery == query) return;
+    currentQuery = query;
+    goto(`?${query}`, {
+      replaceState: true,
+      keepFocus: true,
+    });
   };
 
   return {
